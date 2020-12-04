@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb://localhost:27017/test"
+  "mongodb://localhost:27017/test",
   {
     useUnifiedTopology: true,
     useNewUrlParser: true
@@ -49,7 +49,7 @@ app.get(
 
 app.post(
   "/api/tickets",
-  (req, res) => {
+  async (req, res) => {
     id = id+1;
     const ticket = new Ticket({
       id: id,
@@ -68,7 +68,9 @@ app.post(
   }
 );
 
-app.delete('/api/tickets/:id', (req, res) => {
+app.delete(
+  '/api/tickets/:id', 
+  async (req, res) => {
   try {
     await Ticket.deleteOne({
       _id: req.params.id
