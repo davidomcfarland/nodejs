@@ -31,6 +31,8 @@ ticketSchema.set("toJSON", {virtuals: true});
 
 const Ticket = mongoose.model("Ticket", ticketSchema);
 
+let id = 0;
+
 app.use(express.static("public"));
 
 app.get(
